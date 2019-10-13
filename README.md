@@ -62,7 +62,7 @@ Seems like for some reason this API injects some Cloudflare-related headers into
 **API showing cf-ray**
 
 ```console
-$ curl -s https://averyharnish.com/api/v1/headers\?url\=google.com\&cf-ray\=content-type | jq '. | .data."cf-ray"'
+$ curl -s https://averyharnish.com/api/v1/headers\?url\=google.com\&cf-ray\=content-type | jq '.data."cf-ray"'
 "524f0845b10b58cb-DFW"
 ```
 
