@@ -91,9 +91,9 @@ async function handleRequest(request) {
     if (!header) {
       return getAPIResponse(headers)
     }
-    header = headers[header]
+    const headerValue = headers[header]
     if (typeof header !== 'undefined') {
-      return getAPIResponse(header)
+      return getAPIResponse(JSON.parse(`{"${header}":"${headerValue}"}`))
     }
     return getAPIResponse(
       null,
