@@ -1,6 +1,6 @@
 # Headers API
 
-This repository contains code for the API endpoint at https://averyharnish.com/api/v1/headers.
+This repository contains code for the API endpoint at https://averyharnish.com/api/v1/headers and is built with [Cloudflare Workers](https://workers.cloudflare.com) and deployed with [`wrangler`](https://github.com/cloudflare/wrangler).
 
 ## API Usage
 
@@ -52,3 +52,9 @@ $ curl -s https://averyharnish.com/api/v1/headers\?url\=example.com\&header\=con
   "error": ""
 }
 ```
+
+#### Bugs?
+
+Seems like for some reason this API injects some Cloudflare-related headers into the response even for websites that don't use Cloudflare. Not quite sure what that's about.
+
+If there are other bugs feel free to file an issue (or make a PR).
