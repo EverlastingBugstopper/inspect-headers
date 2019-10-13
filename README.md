@@ -53,11 +53,11 @@ $ curl -s https://averyharnish.com/api/v1/headers\?url\=example.com\&header\=con
 }
 ```
 
-#### Bugs?
+## Bugs?
 
 Seems like for some reason this API injects some Cloudflare-related headers into the response even for websites that don't use Cloudflare. Not quite sure what that's about.
 
-##### Example of this particular bug:
+### Example of this particular bug:
 
 **API showing cf-ray**
 
