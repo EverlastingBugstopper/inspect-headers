@@ -1,0 +1,4 @@
+name = "headers"
+type = "webpack"
+route = "averyharnish.com/api/v1/headers*"
+workers_dev = false
