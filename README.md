@@ -57,4 +57,22 @@ $ curl -s https://averyharnish.com/api/v1/headers\?url\=example.com\&header\=con
 
 Seems like for some reason this API injects some Cloudflare-related headers into the response even for websites that don't use Cloudflare. Not quite sure what that's about.
 
+##### Example of this particular bug:
+
+**API showing cf-ray**
+
+```console
+$ curl -s https://averyharnish.com/api/v1/headers\?url\=google.com\&cf-ray\=content-type | jq '. | .data."cf-ray"'
+"524f0845b10b58cb-DFW"
+```
+
+**HEAD request to google.com**
+
+```console
+$ curl -sL --head https://google.com | grep cf-ray
+
+```
+
+Clearly Google does not use Cloudflare so this query should fail.
+
 If there are other bugs feel free to file an issue (or make a PR).
