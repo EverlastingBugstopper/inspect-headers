@@ -1,17 +1,54 @@
-# 👷 `worker-template` Hello World
+# Headers API
 
-A template for kick starting a Cloudflare worker project.
+This repository contains code for the API endpoint at https://averyharnish.com/api/v1/headers.
 
-[`index.js`](https://github.com/cloudflare/worker-template/blob/master/index.js) is the content of the Workers script.
+## API Usage
 
-#### Wrangler
+This API accepts `GET` requests only.
 
-To generate using [wrangler](https://github.com/cloudflare/wrangler)
+### Search Parameters
 
+| key    | value                                      | required |
+| ------ | ------------------------------------------ | -------- |
+| url    | the endpoint you'd like to see headers for | yes      |
+| header | a specific header                          | no       |
+
+### Response Format
+
+The API will return a response with a content type of `application/json` which will include two fields: `data` and `error`. `data` will be an object, and error will be a string.
+
+## Examples
+
+### Get all headers
+
+```console
+$ curl -s https://averyharnish.com/api/v1/headers?url=example.com | jq
+{
+  "data": {
+    "cache-control": "max-age=604800",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "524ef2bd37169b0c-DFW",
+    "connection": "keep-alive",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 13 Oct 2019 05:35:05 GMT",
+    "expect-ct": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+    "expires": "Sun, 20 Oct 2019 05:35:05 GMT",
+    "last-modified": "Fri, 09 Aug 2013 23:54:35 GMT",
+    "server": "cloudflare",
+    "x-cache": "HIT"
+  },
+  "error": ""
+}
 ```
-wrangler generate projectname https://github.com/cloudflare/worker-template
+
+### Get a single header
+
+```console
+$ curl -s https://averyharnish.com/api/v1/headers\?url\=example.com\&header\=content-type | jq
+{
+  "data": {
+    "content-type": "text/html; charset=UTF-8"
+  },
+  "error": ""
+}
 ```
-
-#### Serverless
-
-To deploy using serverless add a [`serverless.yml`](https://serverless.com/framework/docs/providers/cloudflare/) file.
